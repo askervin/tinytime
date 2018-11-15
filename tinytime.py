@@ -96,4 +96,4 @@ def timediff(seconds):
     if t > 0:
         res.append("%sd" % (t,))
     res.reverse()
-    return " ".join(res)
+    return "".join(res)

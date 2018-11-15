@@ -30,3 +30,20 @@ Where to use it
 - Version numbers
 
 - In your prompt: ``export PS1="\$(tinytime epoch) $PS1"``
+
+Example: show previous command run time in prompt
+-------------------------------------------------
+
+At the end of ``.bashrc``:
+```
+function tinytime_command_timer() {
+    TINYTIME_LAST_CMD=$TINYTIME_RUN_CMD
+    TINYTIME_RUN_CMD=$(HISTTIMEFORMAT= history 1);
+    if [ "$TINYTIME_LAST_CMD" != "$TINYTIME_RUN_CMD" ]; then
+        TINYTIME_RUN_START=$(tinytime epoch);
+    fi
+}
+PS1='$(tinytime $(tinytime epoch)-$TINYTIME_RUN_START) $(tinytime epoch) '$PS1
+TINYTIME_RUN_START=$(tinytime epoch)
+trap tinytime_command_timer DEBUG
+```
