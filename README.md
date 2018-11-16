@@ -8,7 +8,7 @@ Examples
 
 - ``tinytime 4s5DW1`` prints ``2018-04-24 16:32:01``, if local time zone is +0300 to UTC.
 
-- ``tinytime 4s5DXW-4s1BXr`` prints time difference: ``4d 1h 59m 39s``
+- ``tinytime 4s5DXW-4s1BXr`` prints time difference: ``4d1h59m39s``
 
 Timestamp explained
 -------------------
@@ -46,4 +46,10 @@ function tinytime_command_timer() {
 PS1='$(tinytime $(tinytime epoch)-$TINYTIME_RUN_START) $(tinytime epoch) '$PS1
 TINYTIME_RUN_START=$(tinytime epoch)
 trap tinytime_command_timer DEBUG
+```
+
+Screenshot looks:
+```
+0s 4vVArG ask@myhost:~$ sleep 2
+2s 4vVAs4 ask@myhost:~$
 ```
