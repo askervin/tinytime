@@ -66,6 +66,9 @@ if __name__ == "__main__":
                          t.minute * 60 +
                          t.hour   * 60 * 60)
                 print tinytime.int_to_tinyb60(int_t)
+            elif arg.count("-") >= 2: # ISO-8601 date or alike
+                print tinytime.epoch_to_tinyb60(
+                    tinytime.iso_to_int(arg))
             elif arg.startswith("/"):
                 if "-" in arg:
                     clock_str_1, clock_str_2 = arg.split("-")

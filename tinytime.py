@@ -19,6 +19,7 @@
 # 02110-1301 USA.
 
 import datetime
+import dateutil.parser
 import os
 import re
 import sys
@@ -64,6 +65,11 @@ def tinyb60_to_int(tinyb60):
             raise ValueError('illegal symbol in tiny60 value: %r' % (sym,))
         k *= 60
     return num
+
+def iso_to_int(iso8601):
+    d = dateutil.parser.isoparse(iso8601)
+    epoch_time = time.mktime(d.timetuple())
+    return int(epoch_time)
 
 def strfclock(clock_str):
     t = tinyb60_to_int(clock_str)
