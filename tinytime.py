@@ -34,7 +34,7 @@ def int_to_tinyb60(num):
     b60digits = []
     while num > 0:
         b60digits.append(symbols60[num % 60])
-        num = num / 60
+        num = num // 60
     return "".join(reversed(b60digits))
 
 def epoch_to_tinyb60(num):
@@ -44,7 +44,7 @@ def epoch_to_tinyb60(num):
     i = 0
     while num > 0:
         b60digits.append(symbols60[num % divisor[i]])
-        num = num / divisor[i]
+        num = num // divisor[i]
         i += 1
     return "".join(reversed(b60digits))
 
@@ -74,9 +74,9 @@ def iso_to_int(iso8601):
 def strfclock(clock_str):
     t = tinyb60_to_int(clock_str)
     s = str(t % 60).zfill(2)
-    t /= 60
+    t //= 60
     m = str(t % 60).zfill(2)
-    t /= 60
+    t //= 60
     h = str(t).zfill(2)
     return "%s:%s:%s" % (h, m, s)
 
@@ -92,13 +92,13 @@ def timediff(seconds):
     res = []
     t = seconds
     res.append("%ss" % (t % 60,))
-    t /= 60
+    t //= 60
     if t > 0:
         res.append("%sm" % (t % 60,))
-    t /= 60
+    t //= 60
     if t > 0:
         res.append("%sh" % (t % 24,))
-    t /= 24
+    t //= 24
     if t > 0:
         res.append("%sd" % (t,))
     res.reverse()
